@@ -1,0 +1,58 @@
+main {
+  padding: 16px;
+  height: calc(100% - 32px);
+  width: calc(100% - 32px);
+}
+
+label {
+  font-size: 14px;
+  font-family: monospace;
+}
+
+.toolbar-section {
+  position: absolute;
+  top: 72px;
+  left: 32px;
+  z-index: 2;
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: column;
+}
+
+.cell {
+  width: 32px;
+  height: 32px;
+  background: #c1c1c1;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell:hover {
+  background: #c9c9c9;
+}
+
+.toolbar-window {
+  padding: 8px;
+  border-radius: 2px;
+  min-width: 200px;
+  min-height: 100px;
+  background: #f4f5f4;
+}
+
+.active {
+  background: #ffb5b5;
+}
+
+.canvas-wrapper {
+  flex: 1;
+  border: 1px solid #c1c1c1;
+  border-radius: 4px;
+  margin-top: 16px;
+  overflow: hidden;
+}

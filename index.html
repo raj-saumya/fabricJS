@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fabric JS</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
+    <link rel="stylesheet" href="styles/common.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/460/fabric.min.js"
+      integrity="sha512-ybPp3kCrNQXdvTfh99YLIdnajWnQvHuEKDJ+b26mxI9w+pLhnBo3HmNLJ1pEUBFO1Q0bfJxApeqecNbmaV763g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  </head>
+  <body>
+    <main id="app" class="flex-col">
+      <label>{{message}}</label>
+      <div class="toolbar-section">
+        <div class="flex-row">
+          <div class="toolbar m-r-2x" v-on:click="handleItemClick">
+            <div
+              v-for="item in toolbar"
+              class="cell"
+              v-bind:title="item.name"
+              v-bind:class="[{ active: currentTab === item.name }]"
+            >
+              {{item.icon}}
+            </div>
+          </div>
+          <div class="toolbar-window">
+            <component v-bind:is="selectedToolbarComponent" />
+          </div>
+        </div>
+      </div>
+      <app-fabric />
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>
