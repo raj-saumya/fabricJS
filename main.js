@@ -1,5 +1,7 @@
 const { Vue } = window;
 
+const bus = new Vue();
+
 Vue.component("attach-window", {
   props: [],
   template: `<label>Attach Options</label>`,
@@ -25,6 +27,9 @@ Vue.component("app-fabric", {
       canvas: null,
     };
   },
+  created: function () {
+    bus.$on("canvas", this.eventHandler);
+  },
   mounted: function () {
     console.log("mounted");
     this.canvas = new fabric.Canvas("fabric", {
@@ -32,6 +37,14 @@ Vue.component("app-fabric", {
       height: this.$refs.canvas.offsetHeight,
       width: this.$refs.canvas.offsetWidth,
     });
+  },
+  beforeDestroy() {
+    bus.$off("canvas", this.eventHandler);
+  },
+  methods: {
+    eventHandler(data) {
+      console.log("object", data);
+    },
   },
 });
 
@@ -69,6 +82,7 @@ const app = new Vue({
       const node = e.target.closest(".cell");
       if (node) {
         this.currentTab = node.title;
+        bus.$emit("canvas", 4);
       }
     },
   },
